@@ -9,21 +9,18 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class WebServer {
-    //Attribut de la classe WebServer
+    // Attribut de la classe WebServer
 
+    // Constructeur de la classe WebServer
 
-
-    //Constructeur de la classe WebServer
-   
-
-    //Méthode de la classe WebServer
+    // Méthode de la classe WebServer
     private void readRequest(Socket socket) {
         try {
             InputStream input = socket.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-            String response = "";
-            while ((response = reader.readLine()) != null) {
-                System.out.println(response);
+            String line;
+            while ((line = reader.readLine()) != null && !line.isEmpty()) {
+                System.out.println("Received: " + line);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -42,30 +39,30 @@ public class WebServer {
         }
     }
 
-    public void run(int portNumber){
-    ServerSocket serverSocket = null;
-    try {
-        serverSocket = new ServerSocket(portNumber);
-        while (true) {
-            Socket socket = serverSocket.accept();
-            System.out.println("Accepted connection");
-            readRequest(socket);
-            System.out.println("Read request");
-            sendResponse(socket);
-            System.out.println("Sent response");
-            socket.close();
-            System.out.println("Closed socket");
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    } finally {
-        if (serverSocket != null) {
-            try {
-                serverSocket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+    public void run(int portNumber) {
+        ServerSocket serverSocket = null;
+        try {
+            serverSocket = new ServerSocket(portNumber);
+            while (true) {
+                Socket socket = serverSocket.accept();
+                System.out.println("Accepted connection");
+                readRequest(socket);
+                System.out.println("Read request");
+                sendResponse(socket);
+                System.out.println("Sent response");
+                socket.close();
+                System.out.println("Closed socket");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (serverSocket != null) {
+                try {
+                    serverSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
-}
 }
