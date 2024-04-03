@@ -23,7 +23,7 @@ public class HttpResponse {
 
         try {
             String response = message;
-            output.write(response);
+            output.write("HTTP/1.1 200 OK\r\n" +response);
             output.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -33,7 +33,7 @@ public class HttpResponse {
     public void notFound(String message) {
         try {
             String response = message;
-            output.write(response);
+            output.write("HTTP/1.1 404 Not Found\r\n" +response);
             output.flush();
         } catch (Exception e) {
             e.printStackTrace();
