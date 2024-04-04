@@ -17,32 +17,7 @@ public class WebServer {
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Accepted connection");
 
-                HttpContext context = new HttpContext(clientSocket);
-                System.out.println("Created context");
-
-                HttpRequest request = context.getRequest();
-                System.out.println("Got request");
-
-                HttpResponse response = context.getResponse();
-                System.out.println("Got response");
-
-                String method = request.getMethod();
-
-                String url = request.getUrl();
-                System.out.println("Method: " + method);
-                System.out.println("URL: " + url);
-                //
-                if (method.equals("GET") && url.equals("/")) {
-                    response.ok("Hello, World!");
-                } else {
-                    response.notFound("Not found");
-                }
-                //
-                
-                System.out.println("Sent response");
-                
-                context.close();
-                System.out.println("Closed context");
+               new RequestProcessor(clientSocket);
             }
         }
 
