@@ -60,4 +60,12 @@ public class HttpResponse {
 
         }
     }
+    public void sendFile(String contentType, String filename) {
+        try {
+            
+        } catch (Exception e) {
+            
+
+        }
+    }
 }
