@@ -1,0 +1,116 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+}
+
+#entete {
+    background-color: #eee;
+    box-shadow: 0 0 10px #000;
+    display: flex;
+    justify-content: space-between;
+}
+
+#entete img {
+    width: 200px;
+}
+
+#entete a{
+    color: #4691ff;
+}
+
+#Présentation h1{
+    padding: 10;
+    border-bottom: 1;
+    color: #4691ff;
+
+}
+
+#Présentation p {
+    text-align: justify;
+}
+
+#Présentation strong{
+    color: #4691ff;
+}
+
+#Présentation video{
+    display: block;
+    margin: auto;
+    width: 500;
+}
+
+#Actualité {
+    display: flex;
+    flex-direction: column;
+}
+
+#Actualité > div{
+    display: flex;
+    justify-content: space-around;
+}
+
+#Actualité > div > div {
+    width: 200px;
+}
+
+
+
+
+#Actualité img{
+    width: 200;
+    border-radius: 10;
+}
+
+#Actualité > h1{
+    color: #4691ff;
+}
+
+#Actualité > h1 > h1{
+    color: #555;
+}
+
+#Actualité > p{
+    font-size: 0.7em;
+}
+
+#Polytech{
+    display: flex;
+    flex-direction: column;
+}
+
+#Polytech img{
+    width: 200;
+    border-radius: 10;
+}
+
+
+#Livraison{
+    display: flex;
+    flex-direction: column;
+}
+
+#Livraison img{
+    width: 200;
+    border-radius: 10;
+}
+
+#Kfet{
+    display: flex;
+    flex-direction: column;
+}
+
+#Kfet img{
+    width: 200;
+    border-radius: 10;
+}
+
+
+
+
+
+
+
+
+
+
+

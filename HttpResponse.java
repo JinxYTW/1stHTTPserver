@@ -65,30 +65,44 @@ public class HttpResponse {
         }
     }
 
-    public void sendFile(String contentType, String filename) {
+    public void sendFile(String filename) {
         try {
+            File file = new File("public/" + filename);
+    
+            if (!file.exists()) {
+                output.write("HTTP/1.1 404 Not Found\r\n".getBytes());
+                output.write("\r\n".getBytes());
+                output.write("File not found: ".getBytes());
+                output.write(filename.getBytes());
+                output.flush();
+                return;
+            }
+    
+            String contentType;
+            if (filename.endsWith(".html")) {
+                contentType = "text/html";
+            } else if (filename.endsWith(".css")) {
+                contentType = "text/css";
+            } else if (filename.endsWith(".png")) {
+                contentType = "image/png";
+            } else {
+                contentType = "application/octet-stream";
+            }
+    
             output.write("HTTP/1.1 200 OK\r\n".getBytes());
             output.write(("Content-Type: " + contentType + "\r\n").getBytes());
             output.write("\r\n".getBytes());
-
-            File file = new File(filename);
-
-            if (!file.exists()) {
-                throw new FileNotFoundException("File not found: " + filename);
-            }
-
+    
             FileInputStream input = new FileInputStream(file);
-
+    
             byte[] bytes = new byte[4096];
-            int byteRead = 0;
+            int byteRead;
             while ((byteRead = input.read(bytes)) != -1) {
                 output.write(bytes, 0, byteRead);
-
-                input.close();
-
-                output.flush();
-                output.close();
             }
+    
+            input.close();
+            output.flush();
         } catch (Exception e) {
             e.printStackTrace();
         }

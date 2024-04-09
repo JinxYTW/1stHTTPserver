@@ -32,7 +32,7 @@ public class RequestProcessor {
         if ("/".equals(request.getUrl())) {
             System.out.println("Sending OK response");
             //response.ok("Get Jinxed !");
-            response.sendContent("text/html", "<strong>Get Jinxed !</strong>");
+            response.sendFile("index.html");
         } else {
             System.out.println("Sending Not Found response");
             response.notFound("La page demandee n'existe pas");
