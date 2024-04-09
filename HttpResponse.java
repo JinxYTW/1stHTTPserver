@@ -80,7 +80,7 @@ public class HttpResponse {
     
             String contentType;
             if (filename.endsWith(".html")) {
-                contentType = "text/html";
+                contentType = "text/html; charset=UTF-8";
             } else if (filename.endsWith(".css")) {
                 contentType = "text/css";
             } else if (filename.endsWith(".png")) {
