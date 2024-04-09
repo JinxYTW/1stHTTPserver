@@ -9,13 +9,12 @@ public class RequestProcessor {
         System.out.println("Starting RequestProcessor constructor");
         context = new HttpContext(socket);
         process();
-        context.close();
-        System.out.println("Closed context");
         System.out.println("Ending RequestProcessor constructor");
     }
 
     // Méthode de la classe RequestProcessor
     private void process() {
+        try{
         
 
         HttpRequest request = context.getRequest();
@@ -36,8 +35,13 @@ public class RequestProcessor {
             response.sendContent("text/html", "<strong>Get Jinxed !</strong>");
         } else {
             System.out.println("Sending Not Found response");
-            response.notFound("La page demandée n'existe pas");
+            response.notFound("La page demandee n'existe pas");
         }
         System.out.println("Sent response");
+    }
+    finally{
+    context.close();
+    System.out.println("Closed context");
+}
     }
 }
